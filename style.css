@@ -1,0 +1,260 @@
+body {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "calibri", sans-serif;
+    text-align: center;
+    flex-wrap: wrap;
+    background-color: black;
+    flex-grow: 1;
+    
+    
+
+}
+
+.container1 {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "calibri", sans-serif;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    height: 150px;
+    margin-bottom: 30px;
+    
+    
+
+}
+
+.minutes {
+    display: block;
+    width: 28%;
+    height: 150px;
+    overflow: scroll;
+}
+
+
+.minutes::-webkit-scrollbar {
+    display: none;
+}
+
+.min {
+    width: 15%;
+    height: 60px;
+    border: 0px;
+    padding: 0;
+    margin: 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    color: blanchedalmond;
+    font-size: 30px;
+
+}
+
+.seconds {
+    display: block;
+    width: 28%;
+    height: 150px;
+    overflow: scroll;
+    
+}
+
+
+.seconds::-webkit-scrollbar {
+    display: none;
+}
+
+.sec {
+    width: 15%;
+    height: 60px;
+    border: 0px;
+    padding: 0;
+    margin: 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    color: blanchedalmond;
+    font-size: 30px;
+    
+}
+
+p {
+    height: 70px;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    color: blanchedalmond;
+    font-size: 30px;
+    margin-left: 1rem;
+}
+
+
+
+
+
+.container2 {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "calibri", sans-serif;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    height: 150px;
+    margin-bottom: 30px;
+    
+    
+
+}
+
+
+#textbox-minutes {
+   
+    width: 30%;
+    font-size: 100px;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    border: 0px;
+    padding: 0;
+    margin: 0px;
+    cursor: none;
+    outline: none;
+    background: black;
+    color: blanchedalmond;
+    pointer-events: none;
+    
+}
+
+.semicolumn {
+    width: 10%;
+    border: 0px;
+    padding: 0;
+    margin: 0 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    color: blanchedalmond;
+    font-size: 100px;
+    
+}
+
+#textbox-seconds {
+   
+    width: 30%;
+    font-size: 100px;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    text-justify: center;
+    vertical-align: middle;
+    border: 0px;
+    padding: 0;
+    margin: 0px;
+    cursor: none;
+    outline: none;
+    background: black;
+    color: blanchedalmond;
+    pointer-events: none;
+    
+}
+
+.container3 {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "calibri", sans-serif;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    height: 400px;
+    
+    
+
+}
+
+
+#button-start {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #007317;
+    font-size: 50px;
+    cursor: none;
+    outline: none;
+    color: blanchedalmond;
+    font-weight: bolder;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border: 0.25rem solid #02ab24;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    transition: all 0.2s;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#button-start:hover {
+    background: #00db49;
+    border: 0.25rem solid #00ff55;
+}
+
+#button-reset {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #c77100;
+    font-size: 50px;
+    cursor: none;
+    outline: none;
+    color: blanchedalmond;
+    font-weight: bolder;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border: 0.25rem solid #f08800;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    transition: all 0.2s;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#button-reset:hover {
+    background: #889100;
+    border: 0.25rem solid #b3bf00;
+}
+
+.footer {
+    color: blanchedalmond;
+    font-size: 18px;
+    position: fixed;
+    bottom: 0;
+    clear: both;
+    padding: 1rem;
+    
+
+
+}
