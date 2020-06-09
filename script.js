@@ -81,7 +81,7 @@ gridBottom = $('.seconds').outerHeight();
 $(".seconds p")[0].style.fontWeight = "bolder"; //.css("font-weight", "bolder");
 $(".seconds p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".seconds p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
-$(".seconds p")[1].style.opacity = "0.1";
+$(".seconds p")[1].style.opacity = "0.4";
 
 $('.seconds').on('scroll', function() {
     // On each scroll check if `p` is in interested viewport
@@ -99,17 +99,17 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("click");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 100);
-                function delayF () {
-                    $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            }
+                        $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+            //     setTimeout(delayF, 100);
+            //     function delayF () {
+            // }
             }
         } 
         else {
         $(this).css("font-weight", "normal");
         $(this).css("font-size", "30px");
         $(this).css("margin-left", "1.5rem");
-        $(this).fadeTo(10, 0.1);
+        $(this).fadeTo(10, 0.4);
     }
     });
 });
@@ -125,7 +125,7 @@ gridBottom = $('.minutes').outerHeight();
 $(".minutes p")[0].style.fontWeight = "bolder"; //.css("font-weight", "bolder");
 $(".minutes p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".minutes p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
-$(".minutes p")[1].style.opacity = "0.1";
+$(".minutes p")[1].style.opacity = "0.4";
 
 $('.minutes').on('scroll', function() {
     // On each scroll check if `p` is in interested viewport
@@ -152,7 +152,7 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-weight", "normal");
             $(this).css("font-size", "30px");
             $(this).css("margin-left", "1.5rem");
-            $(this).fadeTo(10, 0.1);
+            $(this).fadeTo(10, 0.4);
         }
     });
 });
