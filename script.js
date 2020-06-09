@@ -95,7 +95,7 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("focus", choose);
+            $(this).on("focus", choose);
             $(this).trigger("focus");
             function choose () {
                 seconds = $(this).text();
@@ -105,6 +105,7 @@ $('.seconds').on('scroll', function() {
                     if ($(this).text() === seconds) {
                         return true;
                     }
+                    $(this).off("focus", choose);
         }
     } 
         else {
