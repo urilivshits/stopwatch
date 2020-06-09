@@ -97,7 +97,7 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("hover");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 150);
+                setTimeout(delayF, 50);
                 function delayF () {
                 $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
                     if ($(this).text() === seconds) {
