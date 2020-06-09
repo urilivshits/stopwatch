@@ -95,8 +95,8 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("mouseup", choose);
-            $(this).trigger("mouseup");
+            $(this).on("click", choose);
+            $(this).trigger("click");
             function choose () {
                 seconds = $(this).text();
                 // setTimeout(delayF, 150);
@@ -138,8 +138,8 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("mouseleave", choose);
-            $(this).trigger("mouseleave");
+            $(this).on("hover", choose);
+            $(this).trigger("hover");
             function choose () {
                 minutes = ($(this).text());
                 // setTimeout(delayF, 150);
@@ -147,6 +147,15 @@ $('.minutes').on('scroll', function() {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
             // }
             }
+            // $(this).on("mouseleave", choose);
+            // $(this).trigger("mouseleave");
+            // function choose () {
+            //     minutes = ($(this).text());
+            //     // setTimeout(delayF, 150);
+            //     // function delayF () {
+            //     $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+            // // }
+            // }
         } 
         else {
             $(this).css("font-weight", "normal");
