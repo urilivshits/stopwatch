@@ -83,7 +83,7 @@ $(".seconds p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".seconds p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".seconds p")[1].style.opacity = "0.4";
 
-$('.seconds').one('scroll', function() {
+$('.seconds').on('scroll', function() {
     // On each scroll check if `p` is in interested viewport
     
     
