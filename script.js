@@ -102,7 +102,8 @@ $('.seconds').on('scroll', function() {
                 // setTimeout(delayF, 150);
                 // function delayF () {
                 $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                if (thisTop !== $('.seconds p').offset().top) {
+                // if (thisTop !== $('.seconds p').offset().top) {
+                if ($(this).text() === seconds) {
                     return;                    
                 }   
                     
