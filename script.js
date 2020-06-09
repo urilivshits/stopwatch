@@ -143,11 +143,11 @@ $('.minutes').on('scroll', function() {
             $(this).on("focus", choose);
             $(this).trigger("focus");
             function choose () {
-                seconds = $(this).text();
+                minutes = $(this).text();
                 setTimeout(delayF, 50);
                 function delayF () {
-                $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
-                    if ($(this).text() === seconds) {
+                $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+                    if ($(this).text() === minutes) {
                         return true;
                     }
                     // $(this).off("focus", choose);
