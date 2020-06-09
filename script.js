@@ -85,8 +85,6 @@ $(".seconds p")[1].style.opacity = "0.4";
 
 $('.seconds').on('scroll', function() {
     // On each scroll check if `p` is in interested viewport
-    
-    
     $('.seconds p').each(function() {
         var thisTop = $(this).offset().top;
         // Check if this element is in the interested viewport
@@ -95,18 +93,18 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("focus", choose);
-            $(this).trigger("focus");
-            function choose () {
+            $(this).on("hover", choose1, choose2);
+            $(this).trigger("hover");
+            function choose1 () {
                 seconds = $(this).text();
-                // setTimeout(delayF, 150);
-                // function delayF () {
+            };
+            function choose2 () {
                 $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                    if ($(this).text() === seconds) {
-                        return true;
-                    }
-                    $(this).off("focus", choose);
-        }
+                    // if ($(this).text() === seconds) {
+                    //     return true;
+                    // }
+                    // $(this).off("focus", choose);
+        };
     } 
         else {
         $(this).css("font-weight", "normal");
