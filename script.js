@@ -95,7 +95,7 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("mouseup", choose);
+            $(this).on("mouseup", choose);
             $(this).trigger("mouseup");
             function choose () {
                 seconds = $(this).text();
