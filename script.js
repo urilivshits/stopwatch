@@ -138,8 +138,8 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("click", choose);
-            $(this).trigger("click");
+            $(this).one("mouseleave", choose);
+            $(this).trigger("mouseleave");
             function choose () {
                 minutes = ($(this).text());
             //     setTimeout(delayF, 50);
