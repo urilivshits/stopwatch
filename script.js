@@ -99,10 +99,10 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("mouseup");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 150);
-                function delayF () {
+                // setTimeout(delayF, 150);
+                // function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            }
+            // }
             }
         } 
         else {
