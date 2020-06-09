@@ -95,11 +95,11 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("mouseleave", choose);
-            $(this).trigger("mouseleave");
+            $(this).one("click", choose);
+            $(this).trigger("click");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 10);
+                setTimeout(delayF, 250);
                 function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
             }
@@ -142,10 +142,10 @@ $('.minutes').on('scroll', function() {
             $(this).trigger("mouseleave");
             function choose () {
                 minutes = ($(this).text());
-                // setTimeout(delayF, 150);
-                // function delayF () {
+                setTimeout(delayF, 150);
+                function delayF () {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            // }
+            }
             }
         } 
         else {
