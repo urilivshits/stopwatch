@@ -99,7 +99,7 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("click");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 10);
+                setTimeout(delayF, 2000);
                 function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
             }
