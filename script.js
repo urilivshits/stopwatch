@@ -142,10 +142,10 @@ $('.minutes').on('scroll', function() {
             $(this).trigger("click");
             function choose () {
                 minutes = ($(this).text());
-                setTimeout(delayF, 50);
-                function delayF () {
-                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            }
+            //     setTimeout(delayF, 50);
+            //     function delayF () {
+            //     $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+            // }
             }
         } 
         else {
