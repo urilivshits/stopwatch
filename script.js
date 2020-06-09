@@ -93,19 +93,20 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("hover", choose1, choose2);
+            $(this).on("hover", choose);
             $(this).trigger("hover");
-            function choose1 () {
+            function choose () {
                 seconds = $(this).text();
-            };
-            function choose2 () {
+                setTimeout(delayF, 150);
+                function delayF () {
                 $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                    // if ($(this).text() === seconds) {
-                    //     return true;
-                    // }
+                    if ($(this).text() === seconds) {
+                        return true;
+                    }
                     // $(this).off("focus", choose);
-        };
+        }
     } 
+}
         else {
         $(this).css("font-weight", "normal");
         $(this).css("font-size", "30px");
