@@ -83,7 +83,7 @@ $(".seconds p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".seconds p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".seconds p")[1].style.opacity = "0.4";
 
-$('.seconds').on('scroll', function() {
+$('.seconds').on('mouseover', function() {
     // On each scroll check if `p` is in interested viewport
     
     
@@ -138,8 +138,8 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("hover", choose);
-            $(this).trigger("hover");
+            $(this).on("mouseleave", choose);
+            $(this).trigger("mouseleave");
             function choose () {
                 minutes = ($(this).text());
                 // setTimeout(delayF, 150);
