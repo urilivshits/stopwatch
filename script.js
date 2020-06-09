@@ -95,14 +95,14 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("mouseleave", choose);
-            $(this).trigger("mouseleave");
+            $(this).one("mouseup", choose);
+            $(this).trigger("mouseup");
             function choose () {
                 seconds = $(this).text();
-                // setTimeout(delayF, 150);
-                // function delayF () {
+                setTimeout(delayF, 150);
+                function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            // }
+            }
             }
         } 
         else {
@@ -142,10 +142,10 @@ $('.minutes').on('scroll', function() {
             $(this).trigger("mouseleave");
             function choose () {
                 minutes = ($(this).text());
-                setTimeout(delayF, 150);
-                function delayF () {
+                // setTimeout(delayF, 150);
+                // function delayF () {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-            }
+            // }
             }
         } 
         else {
