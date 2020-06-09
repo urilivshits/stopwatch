@@ -95,11 +95,11 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("click", choose);
-            $(this).trigger("click");
+            $(this).on("mouseleave", choose);
+            $(this).trigger("mouseleave");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 250);
+                setTimeout(delayF, 150);
                 function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
             }
