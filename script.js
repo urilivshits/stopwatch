@@ -83,7 +83,7 @@ $(".seconds p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".seconds p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".seconds p")[1].style.opacity = "0.4";
 
-$('.seconds').on('mouseover', function() {
+$('.seconds').on('scroll', function() {
     // On each scroll check if `p` is in interested viewport
     
     
@@ -95,8 +95,8 @@ $('.seconds').on('mouseover', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("click", choose);
-            $(this).trigger("click");
+            $(this).on("focus", choose);
+            $(this).trigger("focus");
             function choose () {
                 seconds = $(this).text();
                 // setTimeout(delayF, 150);
