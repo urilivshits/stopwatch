@@ -101,7 +101,7 @@ $('.seconds').on('scroll', function() {
                 seconds = $(this).text();
                 // setTimeout(delayF, 150);
                 // function delayF () {
-                    $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+                    $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
             // }
             }
         } 
