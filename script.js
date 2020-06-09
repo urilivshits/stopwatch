@@ -102,14 +102,11 @@ $('.seconds').on('scroll', function() {
                 // setTimeout(delayF, 150);
                 // function delayF () {
                 $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                // if (thisTop !== $('.seconds p').offset().top) {
-                if ($(this).text() === seconds) {
-                    return;                    
-                }   
-                    
-            // }
-            }
-        } 
+                    if ($(this).text() === seconds) {
+                        return true;
+                    }
+        }
+    } 
         else {
         $(this).css("font-weight", "normal");
         $(this).css("font-size", "30px");
