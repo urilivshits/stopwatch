@@ -138,7 +138,7 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).one("mouseleave", choose);
+            $(this).on("mouseleave", choose);
             $(this).trigger("mouseleave");
             function choose () {
                 minutes = ($(this).text());
