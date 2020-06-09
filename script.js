@@ -99,7 +99,7 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("click");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 2000);
+                setTimeout(delayF, 250);
                 function delayF () {
                     $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
             }
@@ -144,7 +144,7 @@ $('.minutes').on('scroll', function() {
                 minutes = ($(this).text());
             //     setTimeout(delayF, 50);
             //     function delayF () {
-            //     $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
             // }
             }
         } 
