@@ -6,9 +6,12 @@ $(".container2").hide();
 
 
 // start
-$("#button-start").click(start);
+
+$("#button-start").one("click", start);
 
 function start (){
+    
+    
     secondsN = parseInt(seconds);
     minutesN = parseInt(minutes);
     totalSeconds = eval(minutesN*60+secondsN);
@@ -21,22 +24,25 @@ function start (){
         $("#textbox-minutes").val(minutesT);
         // secondsN--;
         // $(".seconds p")[secondsN].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-        if (totalSeconds < 0){
+        if (totalSeconds < 0) {
                 clearInterval(interval);
                 totalSeconds = "";
-                $("#textbox").val(totalSeconds);
+                $("#button-start").one("click", start); 
         }
         if (totalSeconds !== "") {
-                $("#button-start").hide();
-                $("#button-reset").show();
-                $(".container1").hide();
-                $(".container2").show();    
+            // $("#button-start").hide();
+            // $("#button-reset").show();
+            $(".container1").hide();
+            $(".container2").show();
+            $("#button-start").text("Pause");
+            $("#button-start").off("click", start);    
         }
         else {
-                $("#button-start").show();
-                $("#button-reset").hide();
-                $(".container1").show();
-                $(".container2").hide();
+            // $("#button-start").show();
+            // $("#button-reset").hide();
+            $(".container1").show();
+            $(".container2").hide();
+            $("#button-start").text("Start");
         }
         if (totalSeconds >= 0) {
         //     // document.querySelector(".seconds").scrollTo(0, 0);
@@ -47,17 +53,48 @@ function start (){
         if (secondsT < 10) {
             $("#textbox-seconds").val("0" + secondsT);
         }
+        if (minutesT < 10) {
+            $("#textbox-minutes").val("0" + minutesT);
+        }
     };
-};
-            
-            
-// reset
-$("#button-reset").click(reset).hide();
+
+touchStartSelect = document.querySelector("#button-start");
+touchStartSelect.addEventListener("touchstart", touchStart);
+
+var mouseTimer;
+
+function touchStart () {
+    
+    touchEnd();
+    mouseTimer = setTimeout(reset, 1000);
+}
+
+touchEndSelect = document.querySelector("#button-start");
+touchEndSelect.addEventListener("touchend", touchEnd);
+
+function touchEnd () {
+    // console.log("touchEnd");
+    // if (mouseTimer) 
+        clearTimeout(mouseTimer);
+    // }
+}
 
 function reset (){
+    console.log("reset event");
     totalSeconds = "";
-    $("#textbox").val(totalSeconds);
+}
+    
 };
+
+
+            
+// reset
+// $("#button-reset").click(reset).hide();
+
+// function reset (){
+//     totalSeconds = "";
+//     $("#textbox").val(totalSeconds);
+// };
             
             
 // play audio
@@ -146,7 +183,7 @@ $('.minutes').on('scroll', function() {
                 minutes = $(this).text();
                 setTimeout(delayF, 50);
                 function delayF () {
-                $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
                     if ($(this).text() === minutes) {
                         return true;
                     }
