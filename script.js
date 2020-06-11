@@ -143,7 +143,7 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("touchend", choose);
+            $(this).one("touchend", choose);
             $(this).trigger("touchend");
             function choose () {
                 seconds = $(this).text();
@@ -153,7 +153,8 @@ $('.seconds').on('scroll', function() {
                 //     if ($(this).text() === seconds) {
                 //         return true;
                 //     }
-                $(".seconds p")[seconds].style.paddingTop = "40px";
+                $(".seconds p")[seconds].style.paddingTop = "49px";
+                $(".seconds p")[seconds].style.paddingBottom = "49px";
 
                     // $(this).off("focus", choose);
         // }
@@ -192,17 +193,17 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("touchend", choose);
+            $(this).one("touchend", choose);
             $(this).trigger("touchend");
             function choose () {
                 minutes = $(this).text();
                 // setTimeout(delayF, 50);
                 // function delayF () {
-                // $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
-                $(".minutes p")[minutes].style.verticalAlign = "middle";   //css("vertical-align", "center");
-        //             if ($(this).text() === minutes) {
-        //                 return true;
-        //             }
+                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
+                // $(".minutes p")[minutes].style.verticalAlign = "middle";   //css("vertical-align", "center");
+                    if ($(this).text() === minutes) {
+                        return true;
+                    }
         //             // $(this).off("focus", choose);
         // }
     } 
