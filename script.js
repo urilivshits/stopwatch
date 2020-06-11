@@ -149,7 +149,7 @@ $('.seconds').on('scroll', function() {
                 seconds = $(this).text();
                 setTimeout(delayF, 50);
                 function delayF () {
-                $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
                     if ($(this).text() === seconds) {
                         return true;
                     }
@@ -196,7 +196,7 @@ $('.minutes').on('scroll', function() {
                 minutes = $(this).text();
                 // setTimeout(delayF, 50);
                 // function delayF () {
-                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
         //             if ($(this).text() === minutes) {
         //                 return true;
         //             }
