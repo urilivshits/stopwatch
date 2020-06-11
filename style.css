@@ -154,6 +154,7 @@ p {
     vertical-align: middle;
     color: blanchedalmond;
     font-size: 100px;
+    pointer-events: auto;
     
 }
 
@@ -198,9 +199,10 @@ p {
     height: 250px;
     border-radius: 50%;
     background: #007317;
-    font-size: 50px;
+    font-size: 30px;
     cursor: none;
     outline: none;
+    pointer-events: auto;
     color: blanchedalmond;
     font-weight: bolder;
     padding:0.3em 1.2em;
@@ -213,12 +215,31 @@ p {
     align-items: center;
     justify-content: center;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #button-start:hover {
     background: #00db49;
     border: 0.25rem solid #00ff55;
 }
+
+#button-start p {
+    font-size: 15px;
+    color: blanchedalmond;
+    padding: 0;
+    padding-top: 10px;
+    margin: 0;
+    margin-top: 10px;
+    border: 0;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 20px;
+    
+
+}
+
 
 #button-reset {
     width: 250px;
@@ -257,4 +278,8 @@ p {
     
 
 
+}
+
+.test {
+    background-color: royalblue;
 }

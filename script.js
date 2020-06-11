@@ -10,13 +10,14 @@ $(".container2").hide();
 $("#button-start").one("click", start);
 
 function start (){
-    
-    
     secondsN = parseInt(seconds);
     minutesN = parseInt(minutes);
     totalSeconds = eval(minutesN*60+secondsN);
+    
+    paused = false; 
     interval = setInterval(timerDown, 1000);
     function timerDown (){
+        if (paused === false) {
         minutesT = Math.floor(totalSeconds/60);
         secondsT = totalSeconds - minutesT*60;
         totalSeconds--;
@@ -34,8 +35,6 @@ function start (){
             // $("#button-reset").show();
             $(".container1").hide();
             $(".container2").show();
-            $("#button-start").text("Pause");
-            $("#button-start").off("click", start);    
         }
         else {
             // $("#button-start").show();
@@ -57,11 +56,34 @@ function start (){
             $("#textbox-minutes").val("0" + minutesT);
         }
     };
+}
 
-touchStartSelect = document.querySelector("#button-start");
-touchStartSelect.addEventListener("touchstart", touchStart);
+$("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
+$("#button-start p").hide().fadeIn(1000).fadeOut(1000).fadeIn(1000);
+$("#button-start").off("click", start); 
+$("#button-start").one("click", pause);
+    
+    function pause (e) {
+        $("#button-start").text("Resume");
+        e.preventDefault();
+        paused = true;
+        $("#button-start").one("click", resume);
+        
+    };
+    
+    function resume (e) {
+        $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
+        $("#button-start p").hide().fadeIn(1000).fadeOut(1000).fadeIn(1000);
+        e.preventDefault();
+        paused = false;
+        $("#button-start").one("click", pause);
+        
+    };
+
 
 var mouseTimer;
+touchStartSelect = document.querySelector("#button-start");
+touchStartSelect.addEventListener("touchstart", touchStart);
 
 function touchStart () {
     
@@ -73,28 +95,16 @@ touchEndSelect = document.querySelector("#button-start");
 touchEndSelect.addEventListener("touchend", touchEnd);
 
 function touchEnd () {
-    // console.log("touchEnd");
     // if (mouseTimer) 
         clearTimeout(mouseTimer);
     // }
 }
 
 function reset (){
-    console.log("reset event");
     totalSeconds = "";
 }
-    
+
 };
-
-
-            
-// reset
-// $("#button-reset").click(reset).hide();
-
-// function reset (){
-//     totalSeconds = "";
-//     $("#textbox").val(totalSeconds);
-// };
             
             
 // play audio
