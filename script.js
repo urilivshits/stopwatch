@@ -147,14 +147,16 @@ $('.seconds').on('scroll', function() {
             $(this).trigger("touchend");
             function choose () {
                 seconds = $(this).text();
-                setTimeout(delayF, 50);
-                function delayF () {
-                $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
-                    if ($(this).text() === seconds) {
-                        return true;
-                    }
+                // setTimeout(delayF, 50);
+                // function delayF () {
+                // $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                //     if ($(this).text() === seconds) {
+                //         return true;
+                //     }
+                $(".seconds p")[seconds].style.paddingTop = "40px";
+
                     // $(this).off("focus", choose);
-        }
+        // }
     } 
 }
         else {
@@ -196,7 +198,8 @@ $('.minutes').on('scroll', function() {
                 minutes = $(this).text();
                 // setTimeout(delayF, 50);
                 // function delayF () {
-                $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+                // $(".minutes p")[minutes].scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+                $(".minutes p")[minutes].style.verticalAlign = "middle";   //css("vertical-align", "center");
         //             if ($(this).text() === minutes) {
         //                 return true;
         //             }
