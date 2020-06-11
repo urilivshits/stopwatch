@@ -188,9 +188,8 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            
             minutes = $(this).text();
-            $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
+            
             // $(this).one("touchstart", chooseStart);
             // $(this).trigger("touchstart");
             // function chooseStart () {
@@ -213,7 +212,6 @@ $('.minutes').on('scroll', function() {
     //     //             // $(this).off("focus", choose);
     //     // }
     // } 
-       
         } 
         else {
             $(this).css("font-weight", "normal");
@@ -221,5 +219,6 @@ $('.minutes').on('scroll', function() {
             $(this).css("margin-left", "1.5rem");
             $(this).fadeTo(10, 0.4);
         }
+        $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
     });
 });
