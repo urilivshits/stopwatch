@@ -13,9 +13,9 @@ function start (){
     secondsN = parseInt(seconds);
     minutesN = parseInt(minutes);
     totalSeconds = eval(minutesN*60+secondsN);
-    
     paused = false; 
     interval = setInterval(timerDown, 1000);
+    
     function timerDown (){
         if (paused === false) {
         minutesT = Math.floor(totalSeconds/60);
@@ -23,99 +23,102 @@ function start (){
         totalSeconds--;
         $("#textbox-seconds").val(secondsT);
         $("#textbox-minutes").val(minutesT);
-        // secondsN--;
-        // $(".seconds p")[secondsN].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-        if (totalSeconds < 0) {
+            if (totalSeconds < 0) {
                 clearInterval(interval);
                 totalSeconds = "";
                 $("#button-start").one("click", start); 
-        }
-        if (totalSeconds !== "") {
-            // $("#button-start").hide();
-            // $("#button-reset").show();
-            $(".container1").hide();
-            $(".container2").show();
-        }
-        else {
-            // $("#button-start").show();
-            // $("#button-reset").hide();
-            $(".container1").show();
-            $(".container2").hide();
-            $("#button-start").text("Start");
-        }
-        if (totalSeconds >= 0) {
-        //     // document.querySelector(".seconds").scrollTo(0, 0);
-        //     // document.querySelector(".minutes").scrollTo(0, 0);
-            $(".seconds").scrollTop(0);
-            $(".minutes").scrollTop(0);
-        }
-        if (secondsT < 10) {
-            $("#textbox-seconds").val("0" + secondsT);
-        }
-        if (minutesT < 10) {
-            $("#textbox-minutes").val("0" + minutesT);
-        }
-    };
-}
-
-$("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
-$("#button-start p").hide().fadeIn(1000).fadeOut(1000).fadeIn(1000);
-$("#button-start").off("click", start); 
-$("#button-start").one("click", pause);
-    
-    function pause (e) {
-        $("#button-start").text("Resume");
-        e.preventDefault();
-        paused = true;
-        $("#button-start").one("click", resume);
+            }
+            if (totalSeconds !== "") {
+                $(".container1").hide();
+                $(".container2").show();
+                $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
+                $("#button-start p").fadeTo(1000, 0.3);
+                $("#button-start").off("click", start); 
+                $("#button-start").one("click", pause);
         
+                function pause (e) {
+                    if (totalSeconds !== "") {
+                        $("#button-start").text("Resume").append("<p>"+"Hold to Reset"+"</p>");
+                        $("#button-start p").fadeIn(333).fadeOut(333).fadeIn(333);
+                        e.preventDefault();
+                        paused = true;
+                        $("#button-start").one("click", resume);
+                    }
+                };
+        
+                function resume (e) {
+                    if (totalSeconds !== "") {
+                        $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
+                        e.preventDefault();
+                        paused = false;
+                        $("#button-start").one("click", pause);
+                    }
+                };
+            }
+            else {
+                $(".container1").show();
+                $(".container2").hide();
+                $("#button-start").text("Start");
+                paused = false;
+            }
+            if (totalSeconds >= 0) {
+            //     // document.querySelector(".seconds").scrollTo(0, 0);
+            //     // document.querySelector(".minutes").scrollTo(0, 0);
+                $(".seconds").scrollTop(0);
+                $(".minutes").scrollTop(0);
+            }
+            if (secondsT < 10) {
+                $("#textbox-seconds").val("0" + secondsT);
+            }
+            if (minutesT < 10) {
+                $("#textbox-minutes").val("0" + minutesT);
+            }
+        };
+    };
+
+    var mouseTimer;
+    // touchStartSelect = document.querySelector("#button-start");
+    // touchStartSelect.addEventListener("touchstart", touchStart);
+    $("#button-start").on("touchstart", touchStart);
+    
+    function touchStart () {
+        touchEnd();
+        mouseTimer = setTimeout(reset, 1000);
     };
     
-    function resume (e) {
-        $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
-        $("#button-start p").hide().fadeIn(1000).fadeOut(1000).fadeIn(1000);
-        e.preventDefault();
+    // touchEndSelect = document.querySelector("#button-start");
+    // touchEndSelect.addEventListener("touchend", touchEnd);
+    $("#button-start").on("touchend", touchEnd);
+    
+    function touchEnd () {
+        // if (mouseTimer) 
+            clearTimeout(mouseTimer);
+        // }
+    };
+    
+    function reset () {
+        totalSeconds = "";
+        $(".container1").show();
+        $(".container2").hide();
+        $("#button-start").text("Start");
         paused = false;
-        $("#button-start").one("click", pause);
-        
+        $(".seconds").scrollTop(0);
+        $(".minutes").scrollTop(0);
     };
-
-
-var mouseTimer;
-touchStartSelect = document.querySelector("#button-start");
-touchStartSelect.addEventListener("touchstart", touchStart);
-
-function touchStart () {
-    
-    touchEnd();
-    mouseTimer = setTimeout(reset, 1000);
-}
-
-touchEndSelect = document.querySelector("#button-start");
-touchEndSelect.addEventListener("touchend", touchEnd);
-
-function touchEnd () {
-    // if (mouseTimer) 
-        clearTimeout(mouseTimer);
-    // }
-}
-
-function reset (){
-    totalSeconds = "";
-}
-
 };
-            
-            
-// play audio
-// $("#button-play").click(playSound);
 
-function playSound () {
-    sound = document.createElement("audio");
-    //sound.src = "http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3";
-    sound.src = "click.mp3"
-    sound.play();
-};
+
+
+            
+// // play audio
+// // $("#button-play").click(playSound);
+
+// function playSound () {
+//     sound = document.createElement("audio");
+//     //sound.src = "http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3";
+//     sound.src = "click.mp3"
+//     sound.play();
+// };
 
             
 // scrolling seconds
@@ -140,8 +143,8 @@ $('.seconds').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("focus", choose);
-            $(this).trigger("focus");
+            $(this).on("touchend", choose);
+            $(this).trigger("touchend");
             function choose () {
                 seconds = $(this).text();
                 setTimeout(delayF, 50);
@@ -187,18 +190,18 @@ $('.minutes').on('scroll', function() {
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);
-            $(this).on("focus", choose);
-            $(this).trigger("focus");
+            $(this).on("touchend", choose);
+            $(this).trigger("touchend");
             function choose () {
                 minutes = $(this).text();
-                setTimeout(delayF, 50);
-                function delayF () {
+                // setTimeout(delayF, 50);
+                // function delayF () {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                    if ($(this).text() === minutes) {
-                        return true;
-                    }
-                    // $(this).off("focus", choose);
-        }
+        //             if ($(this).text() === minutes) {
+        //                 return true;
+        //             }
+        //             // $(this).off("focus", choose);
+        // }
     } 
        
         } 
