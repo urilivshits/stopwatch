@@ -169,7 +169,7 @@ $('.seconds').on('scroll', function() {
             }
             timerSeconds = setTimeout(function () {
             $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center"});
-            }, 50);
+            }, 10);
         } 
         else {
             $(this).css("font-weight", "normal");
@@ -207,7 +207,7 @@ $('.minutes').on('scroll', function() {
             }
             timerMinutes = setTimeout(function () {
             $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-            }, 50);
+            }, 10);
         } 
         else {
             $(this).css("font-weight", "normal");
