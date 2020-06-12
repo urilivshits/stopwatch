@@ -187,7 +187,7 @@ $('.minutes').on('scroll', function() {
             
             
             
-            $(this).on("click", touchStarted);
+            $(this).one("click", touchStarted);
             $(this).trigger("click");
 
             function touchStarted () {
