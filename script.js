@@ -16,6 +16,8 @@ function start (){
     paused = false; 
     interval = setInterval(timerDown, 1000);
     
+    newTotalSeconds = totalSeconds;
+
     function timerDown (){
         if (paused === false) {
         minutesT = Math.floor(totalSeconds/60);
@@ -26,7 +28,10 @@ function start (){
             if (totalSeconds < 0) {
                 clearInterval(interval);
                 totalSeconds = "";
-                $("#button-start").one("click", start); 
+                $("#button-start").one("click", start);
+                if (mouseTimer === false) {
+                playSound(timerEndSound, 1.0);
+                }
             }
             if (totalSeconds !== "") {
                 $(".container1").hide();
@@ -74,9 +79,16 @@ function start (){
                 $("#textbox-minutes").val("0" + minutesT);
             }
         };
+    
+    x = (totalSeconds / newTotalSeconds) * 100;
+    $(".progress-bar").css("width", x+"%");
+
+
+    
+    
     };
 
-    var mouseTimer;
+    mouseTimer = false; // "false" to check that the alarm will play only when time ends, and not when reset fires;
     // touchStartSelect = document.querySelector("#button-start");
     // touchStartSelect.addEventListener("touchstart", touchStart);
     $("#button-start").on("touchstart", touchStart);
@@ -104,21 +116,30 @@ function start (){
         paused = false;
         $(".seconds").scrollTop(0);
         $(".minutes").scrollTop(0);
+        playSound(clickResetSound, 0.1);
+        mouseTimer = true;
     };
 };
 
 
 
             
-// // play audio
-// // $("#button-play").click(playSound);
+// play audio
 
-// function playSound () {
-//     sound = document.createElement("audio");
-//     //sound.src = "http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3";
-//     sound.src = "click.mp3"
-//     sound.play();
-// };
+$("#button-start").on("click", function () {
+    playSound(clickStartSound, 1.0);
+});
+
+clickStartSound = "clickStart.mp3";
+clickResetSound = "clickReset.mp3";
+timerEndSound = "clickAlarm.mp3";
+
+function playSound (soundSource, soundVolume) {
+    sound = document.createElement("audio");
+    sound.src = soundSource;
+    sound.volume = soundVolume;
+    sound.play();
+};
 
             
 // scrolling seconds
@@ -147,8 +168,8 @@ $('.seconds').on('scroll', function() {
                 clearTimeout(timerSeconds);
             }
             timerSeconds = setTimeout(function () {
-            $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center"});
-            }, 50);
+            $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center"});
+            }, 10);
         } 
         else {
             $(this).css("font-weight", "normal");
@@ -172,7 +193,6 @@ $(".minutes p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".minutes p")[1].style.opacity = "0.4";
 
 $('.minutes').on('scroll', function() {
-    console.log("scroll");
     $('.minutes p').each(function() {
         var thisTop = $(this).offset().top;
         
@@ -187,7 +207,7 @@ $('.minutes').on('scroll', function() {
             }
             timerMinutes = setTimeout(function () {
             $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-            }, 50);
+            }, 10);
         } 
         else {
             $(this).css("font-weight", "normal");
