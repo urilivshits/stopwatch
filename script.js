@@ -185,20 +185,20 @@ $('.minutes').on('scroll', function() {
         
         if (thisTop >= gridTop && (thisTop + $(this).height()) <= gridBottom) {
             
+            $(this).css("font-weight", "bolder");
+            $(this).css("font-size", "50px");
+            $(this).css("margin-left", "1rem");
+            $(this).fadeTo(10, 1.0);    
+            minutes = $(this).text();
             
             
-            $(this).one("click", touchStarted);
-            $(this).trigger("click");
+            $(this).one("touchend", touchStarted);
+            $(this).trigger("touchend");
 
             function touchStarted () {
-                $(this).css("font-weight", "bolder");
-                $(this).css("font-size", "50px");
-                $(this).css("margin-left", "1rem");
-                $(this).fadeTo(10, 1.0);    
-                minutes = $(this).text();
-                console.log("adjust started");
+                // console.log("adjust started");
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-                console.log("adjust ended");
+                // console.log("adjust ended");
                 
             };
             
