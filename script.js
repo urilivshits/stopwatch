@@ -170,6 +170,7 @@ $('.seconds').on('scroll', function() {
 
 // Get viewport height, gridTop and gridBottom
 minutes = 0;
+timer = null;
 var gridTop = 0,
 gridBottom = $('.minutes').outerHeight();
 
@@ -192,15 +193,23 @@ $('.minutes').on('scroll', function() {
             minutes = $(this).text();
             
             
-            $(this).one("touchend", touchStarted);
-            $(this).trigger("touchend");
 
-            function touchStarted () {
+            if (timer !== null) {
+                clearTimeout(timer);
+            }
+
+            // $(this).one("touchend", touchStarted);
+            // $(this).trigger("touchend");
+
+            // function touchStarted () {
                 // console.log("adjust started");
+                timer = setTimeout(function () {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
+
+                }, 150);
                 // console.log("adjust ended");
                 
-            };
+            // };
             
             // $(this).one("touchend", touchEnded);
             // $(this).trigger("touchend");
