@@ -178,8 +178,8 @@ $(".minutes p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".minutes p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".minutes p")[1].style.opacity = "0.4";
 
-$('.minutes').on('touchmove', function() {
-    console.log("touchmove");
+$('.minutes').on('scroll', function() {
+    console.log("scroll");
     $('.minutes p').each(function() {
         var thisTop = $(this).offset().top;
         
@@ -187,10 +187,10 @@ $('.minutes').on('touchmove', function() {
             
             
             
-            // $(this).on("scroll", touchStarted);
-            // $(this).trigger("scroll");
+            $(this).on("click", touchStarted);
+            $(this).trigger("click");
 
-            // function touchStarted () {
+            function touchStarted () {
                 $(this).css("font-weight", "bolder");
                 $(this).css("font-size", "50px");
                 $(this).css("margin-left", "1rem");
@@ -200,7 +200,7 @@ $('.minutes').on('touchmove', function() {
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
                 console.log("adjust ended");
                 
-            // };
+            };
             
             // $(this).one("touchend", touchEnded);
             // $(this).trigger("touchend");
