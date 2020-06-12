@@ -178,8 +178,8 @@ $(".minutes p")[0].style.fontSize = "50px"; //.css("font-size", "50px");
 $(".minutes p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".minutes p")[1].style.opacity = "0.4";
 
-$('.minutes').on('scroll', function() {
-    console.log("scroll started");
+$('.minutes').on('touchmove', function() {
+    console.log("touchmove");
     $('.minutes p').each(function() {
         var thisTop = $(this).offset().top;
         
@@ -187,25 +187,28 @@ $('.minutes').on('scroll', function() {
             
             
             
-            $(this).one("touchstart", touchStarted);
-            $(this).trigger("touchstart");
+            // $(this).on("scroll", touchStarted);
+            // $(this).trigger("scroll");
 
-            function touchStarted () {
+            // function touchStarted () {
                 $(this).css("font-weight", "bolder");
                 $(this).css("font-size", "50px");
                 $(this).css("margin-left", "1rem");
                 $(this).fadeTo(10, 1.0);    
-                console.log("touch started");
                 minutes = $(this).text();
-            };
-            
-            $(this).one("touchend", touchEnded);
-            $(this).trigger("touchend");
-
-            function touchEnded () {
-                console.log("touch ended");
+                console.log("adjust started");
                 $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-            };
+                console.log("adjust ended");
+                
+            // };
+            
+            // $(this).one("touchend", touchEnded);
+            // $(this).trigger("touchend");
+
+            // function touchEnded () {
+            //     console.log("touch ended");
+            //     $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
+            // };
 
 
             // $(this).one("touchstart", chooseStart);
