@@ -123,8 +123,8 @@ function start (){
             
 // scrolling seconds
 
-// Get viewport height, gridTop and gridBottom
 seconds = 0;
+timerSeconds = null;
 var gridTop = 0,
 gridBottom = $('.seconds').outerHeight();
 
@@ -134,43 +134,35 @@ $(".seconds p")[1].style.marginLeft = "1.5rem"; //.css("margin-left", "1.5rem");
 $(".seconds p")[1].style.opacity = "0.4";
 
 $('.seconds').on('scroll', function() {
-    // On each scroll check if `p` is in interested viewport
     $('.seconds p').each(function() {
         var thisTop = $(this).offset().top;
-        // Check if this element is in the interested viewport
+        
         if (thisTop >= gridTop && (thisTop + $(this).height()) <= gridBottom) {
             $(this).css("font-weight", "bolder");
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
-            $(this).fadeTo(10, 1.0);
-            $(this).one("touchend", choose);
-            $(this).trigger("touchend");
-            function choose () {
-                seconds = $(this).text();
-                setTimeout(delayF, 50);
-                function delayF () {
-                $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                    if ($(this).text() === seconds) {
-                        return true;
-                    }
-        }
-    } 
-}
+            $(this).fadeTo(10, 1.0);    
+            seconds = $(this).text();
+            if (timerSeconds !== null) {
+                clearTimeout(timerSeconds);
+            }
+            timerSeconds = setTimeout(function () {
+            $(".seconds p")[seconds].scrollIntoView({behavior: "auto", block: "center"});
+            }, 50);
+        } 
         else {
-        $(this).css("font-weight", "normal");
-        $(this).css("font-size", "30px");
-        $(this).css("margin-left", "1.5rem");
-        $(this).fadeTo(10, 0.4);
-    }
+            $(this).css("font-weight", "normal");
+            $(this).css("font-size", "30px");
+            $(this).css("margin-left", "1.5rem");
+            $(this).fadeTo(10, 0.4);
+        }
     });
 });
 
-
 // scrolling minutes
 
-// Get viewport height, gridTop and gridBottom
 minutes = 0;
-timer = null;
+timerMinutes = null;
 var gridTop = 0,
 gridBottom = $('.minutes').outerHeight();
 
@@ -185,63 +177,17 @@ $('.minutes').on('scroll', function() {
         var thisTop = $(this).offset().top;
         
         if (thisTop >= gridTop && (thisTop + $(this).height()) <= gridBottom) {
-            
             $(this).css("font-weight", "bolder");
             $(this).css("font-size", "50px");
             $(this).css("margin-left", "1rem");
             $(this).fadeTo(10, 1.0);    
             minutes = $(this).text();
-            
-            
-
-            if (timer !== null) {
-                clearTimeout(timer);
+            if (timerMinutes !== null) {
+                clearTimeout(timerMinutes);
             }
-
-            // $(this).one("touchend", touchStarted);
-            // $(this).trigger("touchend");
-
-            // function touchStarted () {
-                // console.log("adjust started");
-                timer = setTimeout(function () {
-                $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-
-                }, 150);
-                // console.log("adjust ended");
-                
-            // };
-            
-            // $(this).one("touchend", touchEnded);
-            // $(this).trigger("touchend");
-
-            // function touchEnded () {
-            //     console.log("touch ended");
-            //     $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-            // };
-
-
-            // $(this).one("touchstart", chooseStart);
-            // $(this).trigger("touchstart");
-            // function chooseStart () {
-            //     console.log("touch started");
-            // }
-
-            // $(this).one("touchend", choose);
-            // $(this).trigger("touchend");
-            // choose ();
-    //         function choose () {
-    //             console.log("touch ended");
-    //             minutes = $(this).text();
-    //             // setTimeout(delayF, 50);
-    //             // function delayF () {
-    //             $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-    //             // $(".minutes p")[minutes].style.verticalAlign = "middle";   //css("vertical-align", "center");
-    //                 // if ($(this).text() === minutes) {
-    //                 //     return true;
-    //                 // }
-    //     //             // $(this).off("focus", choose);
-    //     // }
-    // } 
+            timerMinutes = setTimeout(function () {
+            $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
+            }, 50);
         } 
         else {
             $(this).css("font-weight", "normal");
