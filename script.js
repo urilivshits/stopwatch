@@ -169,7 +169,7 @@ $('.seconds').on('scroll', function() {
             }
             timerSeconds = setTimeout(function () {
             $(".seconds p")[seconds].scrollIntoView({behavior: "smooth", block: "center"});
-            }, 10);
+            }, 50);
         } 
         else {
             $(this).css("font-weight", "normal");
