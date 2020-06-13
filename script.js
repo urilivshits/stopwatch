@@ -143,6 +143,7 @@ function playSound (soundSource, soundVolume) {
     sound = document.createElement("audio");
     sound.src = soundSource;
     sound.volume = soundVolume;
+    sound.preload = "auto";
     sound.play();
 };
           
