@@ -124,8 +124,11 @@ function start (){
         paused = false;
         $(".seconds").scrollTop(0);
         $(".minutes").scrollTop(0);
+        $("#button-start").one("touchstart", resetSound);
         $("#button-start").trigger("touchstart");
-        playSound(clickResetSound, 0.1);
+        function resetSound () {
+            playSound(clickResetSound, 0.1);
+        };
         mouseTimer = true;
     };
 };
