@@ -25,6 +25,7 @@ body {
     height: 150px;
     margin-bottom: 30px;
     vertical-align: middle;
+    user-select: none;
     
     
 
@@ -117,7 +118,7 @@ p {
     flex-grow: 1;
     height: 150px;
     margin-bottom: 30px;
-    
+    user-select: none;
     
 
 }
@@ -189,7 +190,7 @@ p {
     flex-wrap: wrap;
     flex-grow: 1;
     height: 400px;
-   
+    user-select: none;
     
 
 }
@@ -218,6 +219,7 @@ p {
     text-align: center;
     display: flex;
     flex-direction: column;
+    
 }
 
 #button-start:hover {
