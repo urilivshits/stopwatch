@@ -124,6 +124,7 @@ function start (){
         paused = false;
         $(".seconds").scrollTop(0);
         $(".minutes").scrollTop(0);
+        $("#button-start").trigger("touchstart");
         playSound(clickResetSound, 0.1);
         mouseTimer = true;
     };
