@@ -226,7 +226,7 @@ p {
 }
 
 
-#button-start:hover, #button-start:active {
+#button-start:active {
     background: #005210;
     border: 1.5px solid #005210;
     /* background: #02ab24;
