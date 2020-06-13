@@ -80,12 +80,21 @@ function start (){
             }
         };
     
-    x = (totalSeconds / newTotalSeconds) * 100;
-    $(".progress-bar").css("width", x+"%");
+    // x = (totalSeconds / newTotalSeconds) * 100;
+    // $(".progress-bar").css("width", x+"%");
 
+circle = document.getElementById("circle-loader");
 
-    
-    
+percentage = (totalSeconds / newTotalSeconds); //* 100; //document.getElementById("percentage"),
+radius = 150;
+
+// document.getElementById("percentage").addEventListener("change", function() { //when the percentage changes
+
+dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
+    // var dasharray = (Number(percentage.value) * 2 * Number((Number(radius.value) * Math.PI))) + ", " + ((1 - Number(percentage.value)) * 2 * Number((Number(radius.value) * Math.PI)));
+    circle.style.strokeDasharray = dasharray; //sets the dasharray
+//   });
+
     };
 
     mouseTimer = false; // "false" to check that the alarm will play only when time ends, and not when reset fires;
