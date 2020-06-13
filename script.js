@@ -207,7 +207,7 @@ $('.minutes').on('scroll', function() {
             }
             timerMinutes = setTimeout(function () {
             $(".minutes p")[minutes].scrollIntoView({behavior: "smooth", block: "center"});
-            }, 10);
+            }, 50);
         } 
         else {
             $(this).css("font-weight", "normal");

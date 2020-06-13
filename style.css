@@ -315,7 +315,7 @@ p {
 
 }
 
-/* .altContainer {
+.altContainer {
     display: none;
 }
 
@@ -326,9 +326,9 @@ p {
         color: blanchedalmond;
         width: 80%;
         height: 50%;
-        /* margin-left: auto;
-        margin-right: auto; */
-    /* }
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     body {
         flex-flow: column nowrap;
@@ -356,8 +356,8 @@ p {
     }
     
     .minutes::-webkit-scrollbar {
-        display: none; */
-    /* }
+        display: none;
+    }
     
     .min {
         display: none;
@@ -388,7 +388,7 @@ p {
     .progress-bar {
         display: none;
 
-    } */
+    }
 
 
 
