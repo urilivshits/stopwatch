@@ -14,7 +14,6 @@ function start (){
     minutesN = parseInt(minutes);
     totalSeconds = eval(minutesN*60+secondsN);
     paused = false; 
-    mouseTimer = false; // "false" to check that the alarm will play only when time ends, and not when reset fires;
     interval = setInterval(timerDown, 1000);
     newTotalSeconds = totalSeconds;
 
@@ -22,18 +21,18 @@ function start (){
         if (paused === false) {
         minutesT = Math.floor(totalSeconds/60);
         secondsT = totalSeconds - minutesT*60;
-        totalSeconds--;
+        
         $("#textbox-seconds").val(secondsT);
         $("#textbox-minutes").val(minutesT);
-            if (totalSeconds == -1) {
+            if (totalSeconds < 0) {
                 clearInterval(interval);
                 totalSeconds = "";
                 $("#button-start").one("click", start);
-                if (mouseTimer === false) {
-                playSound(timerEndSound, 1.0);
+                if (newTotalSeconds > 0) {
+                    playSound(timerEndSound, 1.0);
                 }
             }
-            if (totalSeconds !== "") {
+            if (totalSeconds > 0) {
                 $(".container1").hide();
                 $(".container2").show();
                 $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
@@ -45,7 +44,7 @@ function start (){
                 $("#circle-loader").css("stroke", "#02ab24");
         
                 function pause (e) {
-                    if (totalSeconds !== "") {
+                    if (totalSeconds > -1) {
                         $("#button-start").text("Resume").append("<p>"+"Hold to Reset"+"</p>");
                         $("#button-start p").fadeIn(333).fadeOut(333).fadeIn(333);
                         $("#button-start").css("background", "#b55909");
@@ -58,7 +57,7 @@ function start (){
                 };
         
                 function resume (e) {
-                    if (totalSeconds !== "") {
+                    if (totalSeconds > -1) {
                         $("#button-start").text("Pause").append("<p>"+"Hold to Reset"+"</p>");
                         e.preventDefault();
                         paused = false;
@@ -73,8 +72,6 @@ function start (){
                 paused = false;
             }
             if (totalSeconds >= 0) {
-            //     // document.querySelector(".seconds").scrollTo(0, 0);
-            //     // document.querySelector(".minutes").scrollTo(0, 0);
                 $(".seconds").scrollTop(0);
                 $(".minutes").scrollTop(0);
             }
@@ -84,30 +81,25 @@ function start (){
             if (minutesT < 10) {
                 $("#textbox-minutes").val("0" + minutesT);
             }
+            totalSeconds--;
         };
     
     
-    // PROGRESS BAR
-    
-    // x = (totalSeconds / newTotalSeconds) * 100;
-    // $(".progress-bar").css("width", x+"%");
-    circle = document.getElementById("circle-loader");
-    percentage = ((1+totalSeconds) / newTotalSeconds);
-    // percentage = (totalSeconds / newTotalSeconds);
-    radius = 150;
-    dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
-    circle.style.strokeDasharray = dasharray; 
-    if (totalSeconds == "") {
-        percentage = 0;
-        dasharray = 0 + ", " + 314;
-        circle.style.strokeDasharray = dasharray; 
-    }
+        // PROGRESS BAR
+        
+        circle = document.getElementById("circle-loader");
+        percentage = ((1+totalSeconds) / newTotalSeconds);
+        radius = 150;
+        dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
+        circle.style.strokeDasharray = dasharray;
     };
 
     // RESET
 
     $("#button-start").on("touchstart", touchStart);
     
+    let mouseTimer;
+
     function touchStart () {
         touchEnd();
         mouseTimer = setTimeout(reset, 1000);
@@ -130,11 +122,13 @@ function start (){
         paused = false;
         $(".seconds").scrollTop(0);
         $(".minutes").scrollTop(0);
-        playSound(clickResetSound, 0.1);
-        mouseTimer = true;
+        playSound(clickResetSound, 0.3);
+        newTotalSeconds = 0;
+        dasharray = 0 + ", " + 314;
+        circle.style.strokeDasharray = dasharray;
     };
 };
-            
+           
 // SOUND
 
 $("#button-start").on("click", function () {
