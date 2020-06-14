@@ -3,9 +3,7 @@
 $(".container1").show();
 $(".container2").hide();
 
-
-
-// start
+// START
 
 $("#button-start").one("click", start);
 
@@ -14,8 +12,8 @@ function start (){
     minutesN = parseInt(minutes);
     totalSeconds = eval(minutesN*60+secondsN);
     paused = false; 
+    mouseTimer = false; // "false" to check that the alarm will play only when time ends, and not when reset fires;
     interval = setInterval(timerDown, 1000);
-    
     newTotalSeconds = totalSeconds;
 
     function timerDown (){
@@ -40,11 +38,17 @@ function start (){
                 $("#button-start p").fadeTo(1000, 0.3);
                 $("#button-start").off("click", start); 
                 $("#button-start").one("click", pause);
+                $("#button-start").css("background", "#005210");
+                $("#button-start").css("border", "1.5px solid #02ab24");
+                $("#circle-loader").css("stroke", "#02ab24");
         
                 function pause (e) {
                     if (totalSeconds !== "") {
                         $("#button-start").text("Resume").append("<p>"+"Hold to Reset"+"</p>");
                         $("#button-start p").fadeIn(333).fadeOut(333).fadeIn(333);
+                        $("#button-start").css("background", "#b55909");
+                        $("#button-start").css("border", "1.5px solid #ffb742");
+                        $("#circle-loader").css("stroke", "#ffb742");
                         e.preventDefault();
                         paused = true;
                         $("#button-start").one("click", resume);
@@ -80,17 +84,22 @@ function start (){
             }
         };
     
-    x = (totalSeconds / newTotalSeconds) * 100;
-    $(".progress-bar").css("width", x+"%");
-
-
     
+    // PROGRESS BAR
     
+    // x = (totalSeconds / newTotalSeconds) * 100;
+    // $(".progress-bar").css("width", x+"%");
+    
+    circle = document.getElementById("circle-loader");
+    percentage = (totalSeconds / newTotalSeconds);
+    radius = 150;
+    dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
+    circle.style.strokeDasharray = dasharray; 
+
     };
 
-    mouseTimer = false; // "false" to check that the alarm will play only when time ends, and not when reset fires;
-    // touchStartSelect = document.querySelector("#button-start");
-    // touchStartSelect.addEventListener("touchstart", touchStart);
+    // RESET
+
     $("#button-start").on("touchstart", touchStart);
     
     function touchStart () {
@@ -98,14 +107,10 @@ function start (){
         mouseTimer = setTimeout(reset, 1000);
     };
     
-    // touchEndSelect = document.querySelector("#button-start");
-    // touchEndSelect.addEventListener("touchend", touchEnd);
     $("#button-start").on("touchend", touchEnd);
     
     function touchEnd () {
-        // if (mouseTimer) 
             clearTimeout(mouseTimer);
-        // }
     };
     
     function reset () {
@@ -113,6 +118,9 @@ function start (){
         $(".container1").show();
         $(".container2").hide();
         $("#button-start").text("Start");
+        $("#button-start").css("background", "#005210");
+        $("#button-start").css("border", "1.5px solid #02ab24");
+        $("#circle-loader").css("stroke", "#02ab24");
         paused = false;
         $(".seconds").scrollTop(0);
         $(".minutes").scrollTop(0);
@@ -120,11 +128,8 @@ function start (){
         mouseTimer = true;
     };
 };
-
-
-
             
-// play audio
+// SOUND
 
 $("#button-start").on("click", function () {
     playSound(clickStartSound, 1.0);
@@ -138,11 +143,11 @@ function playSound (soundSource, soundVolume) {
     sound = document.createElement("audio");
     sound.src = soundSource;
     sound.volume = soundVolume;
+    sound.preload = "auto";
     sound.play();
 };
-
-            
-// scrolling seconds
+          
+// SCROLL seconds
 
 seconds = 0;
 timerSeconds = null;
@@ -180,7 +185,7 @@ $('.seconds').on('scroll', function() {
     });
 });
 
-// scrolling minutes
+// SCROLL minutes
 
 minutes = 0;
 timerMinutes = null;

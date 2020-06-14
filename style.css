@@ -1,5 +1,4 @@
 body {
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,14 +6,16 @@ body {
     text-align: center;
     flex-wrap: wrap;
     background-color: black;
-    flex-grow: 1;
-    
-    
+    /* flex-grow: 1; */
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
 }
 
 .container1 {
     background-color: black;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,8 +26,13 @@ body {
     height: 150px;
     margin-bottom: 30px;
     vertical-align: middle;
-    
-    
+    user-select: none;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 
 }
 
@@ -35,11 +41,12 @@ body {
     width: 28%;
     height: 150px;
     overflow: scroll;
-}
 
+}
 
 .minutes::-webkit-scrollbar {
     display: none;
+
 }
 
 .min {
@@ -66,9 +73,9 @@ body {
     
 }
 
-
 .seconds::-webkit-scrollbar {
     display: none;
+
 }
 
 .sec {
@@ -100,13 +107,11 @@ p {
     color: blanchedalmond;
     font-size: 30px;
     margin-left: 1rem;
+
 }
 
-
-
-
-
 .container2 {
+    width: 100%;
     background-color: black;
     display: flex;
     align-items: center;
@@ -117,14 +122,17 @@ p {
     flex-grow: 1;
     height: 150px;
     margin-bottom: 30px;
+    user-select: none;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
     
-    
-
 }
 
-
 #textbox-minutes {
-   
     width: 30%;
     font-size: 100px;
     text-align: right;
@@ -160,7 +168,6 @@ p {
 }
 
 #textbox-seconds {
-   
     width: 30%;
     font-size: 100px;
     text-align: left;
@@ -181,6 +188,7 @@ p {
 
 .container3 {
     background-color: black;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,8 +197,14 @@ p {
     flex-wrap: wrap;
     flex-grow: 1;
     height: 400px;
-   
-    
+    min-width: 200px;
+    user-select: none;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 
 }
 
@@ -199,7 +213,7 @@ p {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: #007317;
+    background: #005210;
     font-size: 30px;
     cursor: none;
     outline: none;
@@ -208,7 +222,7 @@ p {
     font-weight: bolder;
     padding:0.3em 1.2em;
     margin:0 0.1em 0.1em 0;
-    border: 0.25rem solid #02ab24;
+    border: 1.5px solid #02ab24;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
@@ -218,11 +232,15 @@ p {
     text-align: center;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    
 }
 
-#button-start:hover {
-    background: #00db49;
-    border: 0.25rem solid #00ff55;
+#button-start:active {
+    background: #005210;
+    border: 1.5px solid #005210;
+
 }
 
 #button-start p {
@@ -237,39 +255,10 @@ p {
     text-align: center;
     justify-content: center;
     height: 20px;
-    
 
 }
 
-
-#button-reset {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: #c77100;
-    font-size: 50px;
-    cursor: none;
-    outline: none;
-    color: blanchedalmond;
-    font-weight: bolder;
-    padding:0.3em 1.2em;
-    margin:0 0.1em 0.1em 0;
-    border: 0.25rem solid #f08800;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    transition: all 0.2s;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-#button-reset:hover {
-    background: #889100;
-    border: 0.25rem solid #b3bf00;
-}
-
-.progress-bar-container {
+/* .progress-bar-container {
     background-color: black;
     display: flex;
     align-items: center;
@@ -279,6 +268,7 @@ p {
     flex-wrap: wrap;
     height: 30px;
     width: 80%;
+
 }
 
 .progress-bar {
@@ -292,34 +282,55 @@ p {
     height: 100px;
     width: 0%;
     border-radius: 3px;
+
+} */
+
+#svg-circle-loader {
+    background: none;
+    border: none;
+    margin: none;
+    padding: none;
+    position: absolute;
+    z-index: 1;
+
+}
+    
+#circle-loader {
+fill: none;
+stroke: #02ab24;
+stroke-width: 5px;
+/* rotates the circle's stroke so that the start is at the top */
+stroke-dashoffset: 235.5;
+/* the 0 is the length of the arc filled by the stroke, and the 314 is the diameter (2 times the circle radius) times pi (3.14...) which is the "gap" between the coloured stroke arcs */
+stroke-dasharray: 0, 314;
+/* not necessary, but makes it look smoother */
+transition: all 0.2s linear;
+
 }
 
-
-
-
-
-
-
-
-
-
 .footer {
+    width: 100%;
     color: blanchedalmond;
     font-size: 18px;
     position: fixed;
     bottom: 0;
     clear: both;
     padding: 1rem;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
     
-
-
 }
 
 .altContainer {
     display: none;
+
 }
 
-@media only screen and (min-width: 401px) {
+@media only screen and (min-width: 415px) {
 
     .altContainer {
         display: unset;
@@ -328,13 +339,15 @@ p {
         height: 50%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
+
     }
 
     body {
         flex-flow: column nowrap;
         height: 90vh;
-    }
 
+    }
 
     .container1 {
         display: none;
@@ -345,34 +358,42 @@ p {
 
     .container2 {
         display: none;
+
     }
 
     .container3 {
         display: none;
+
     }
 
     .minutes {
         display: none;
+
     }
     
     .minutes::-webkit-scrollbar {
         display: none;
+
     }
     
     .min {
         display: none;
+
     }
 
     .seconds {
         display: none;
+
     }
     
     .seconds::-webkit-scrollbar {
         display: none;
+
     }
     
     .sec {
         display: none;
+
     }
 
     .footer {
@@ -389,15 +410,5 @@ p {
         display: none;
 
     }
-
-
-
-
-
-
-
-
-
-
 
 }
