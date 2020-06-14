@@ -112,8 +112,8 @@ p {
 
 .animation {
     animation-name: shake;
-    animation-duration: 0.5s;
-    animation-iteration-count: 1.5;
+    animation-duration: 0.3s;
+    animation-iteration-count: 2.0;
 
 }
 
