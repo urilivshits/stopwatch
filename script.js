@@ -1,4 +1,6 @@
-// SUNBATHING STOPWATCH
+// STOPWATCH
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 
 $(".container1").show();
 $(".container2").hide();
@@ -23,7 +25,7 @@ function start (){
         totalSeconds--;
         $("#textbox-seconds").val(secondsT);
         $("#textbox-minutes").val(minutesT);
-            if (totalSeconds < 0) {
+            if (totalSeconds == -1) {
                 clearInterval(interval);
                 totalSeconds = "";
                 $("#button-start").one("click", start);
@@ -89,13 +91,17 @@ function start (){
     
     // x = (totalSeconds / newTotalSeconds) * 100;
     // $(".progress-bar").css("width", x+"%");
-    
     circle = document.getElementById("circle-loader");
-    percentage = (totalSeconds / newTotalSeconds);
+    percentage = ((1+totalSeconds) / newTotalSeconds);
+    // percentage = (totalSeconds / newTotalSeconds);
     radius = 150;
     dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
     circle.style.strokeDasharray = dasharray; 
-
+    if (totalSeconds == "") {
+        percentage = 0;
+        dasharray = 0 + ", " + 314;
+        circle.style.strokeDasharray = dasharray; 
+    }
     };
 
     // RESET
@@ -183,6 +189,9 @@ $('.seconds').on('scroll', function() {
             $(this).fadeTo(10, 0.4);
         }
     });
+    if (seconds == "") {
+        seconds = 59;
+    }
 });
 
 // SCROLL minutes
@@ -200,7 +209,7 @@ $(".minutes p")[1].style.opacity = "0.4";
 $('.minutes').on('scroll', function() {
     $('.minutes p').each(function() {
         var thisTop = $(this).offset().top;
-        
+
         if (thisTop >= gridTop && (thisTop + $(this).height()) <= gridBottom) {
             $(this).css("font-weight", "bolder");
             $(this).css("font-size", "50px");
@@ -221,4 +230,15 @@ $('.minutes').on('scroll', function() {
             $(this).fadeTo(10, 0.4);
         }
     });
+    if (minutes == "") {
+        minutes = 59;
+    }
 });
+
+}
+
+else {
+    $("body").text("The content of this page may only be accessed from a mobile device.");
+    $("body").css("color", "blanchedalmond");
+    $("body").css("height", "90vh");
+}
