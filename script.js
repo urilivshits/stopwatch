@@ -1,7 +1,6 @@
 // STOPWATCH
-
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-
+     
 $(".container1").show();
 $(".container2").hide();
 
@@ -16,14 +15,25 @@ function start (){
     paused = false; 
     interval = setInterval(timerDown, 1000);
     newTotalSeconds = totalSeconds;
-
+    helperSeen = false;
+    
     function timerDown (){
         if (paused === false) {
         minutesT = Math.floor(totalSeconds/60);
         secondsT = totalSeconds - minutesT*60;
-        
         $("#textbox-seconds").val(secondsT);
         $("#textbox-minutes").val(minutesT);
+            
+            if (seconds === 0 && minutes === 0 && helperSeen === false) {
+                $(".container1").addClass("animation");
+                // $(".container1").css("animationName", "shake");
+                // $(".container1").css("animationDuration", "0.5s");
+                // $(".container1").css("animationIterationCount", "1");
+                helperSeen = true;
+            }
+            else {
+                $(".container1").removeClass("animation");
+            }
             if (totalSeconds < 0) {
                 clearInterval(interval);
                 totalSeconds = "";
@@ -84,7 +94,6 @@ function start (){
             totalSeconds--;
         };
     
-    
         // PROGRESS BAR
         
         circle = document.getElementById("circle-loader");
@@ -93,6 +102,7 @@ function start (){
         dasharray = (percentage * 2 * Number((radius * Math.PI))) + ", " + ((1 - percentage) * 2 * Number((radius * Math.PI)));
         circle.style.strokeDasharray = dasharray;
     };
+    
 
     // RESET
 
@@ -128,7 +138,7 @@ function start (){
         circle.style.strokeDasharray = dasharray;
     };
 };
-           
+          
 // SOUND
 
 $("#button-start").on("click", function () {
@@ -228,7 +238,6 @@ $('.minutes').on('scroll', function() {
         minutes = 59;
     }
 });
-
 }
 
 else {
