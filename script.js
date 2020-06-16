@@ -84,8 +84,10 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
                     paused = false;
                 }
                 if (totalSeconds >= 0) {
-                    $(".seconds").scrollTop(0);
-                    $(".minutes").scrollTop(0);
+                    // $(".seconds").scrollTop(0);
+                    // $(".minutes").scrollTop(0);
+                    $(".seconds p")[0].scrollIntoView({behavior: "auto", block: "center"});
+                    $(".minutes p")[0].scrollIntoView({behavior: "auto", block: "center"});
                 }
                 if (secondsT < 10) {
                     $("#textbox-seconds").val("0" + secondsT);
