@@ -245,8 +245,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 }
 
 else {
-    $("body").text("Hello.");
-    // $("body").text("The content of this page may only be accessed from a mobile device.");
+    $("body").text("The content of this page may only be accessed from a mobile device.");
     $("body").css("color", "blanchedalmond");
     $("body").css("height", "90vh");
 }
